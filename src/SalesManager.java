@@ -26,15 +26,27 @@ public class SalesManager {
     }
 
     public long average(long[] arr) {
+        long[] tarr = arr;
         long max = max();
         long min = min();
         int sum = 0;
-        for (long sale : sales) {
-            if (sale != max | sale != min) {
-                sum += sale;
+        for (int i = 0; i < tarr.length; i++) {
+            if (tarr[i] == max) {
+                tarr[i] = 0;
+                break;
             }
-
         }
-        return sum/arr.length;
+
+        for (int i = 0; i < tarr.length; i++) {
+            if (tarr[i] == min) {
+                tarr[i] = 0;
+                break;
+            }
+        }
+
+        for (long l : tarr) {
+            sum += l;
+        }
+        return sum/(arr.length - 2);
     }
 }
